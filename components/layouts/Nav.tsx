@@ -86,7 +86,7 @@ const container = css({
   alignItems: "center",
   width: "100%",
   height: "100%",
-  maxWidth: "70rem",
+  maxWidth: "60rem",
 });
 
 const logoWraper = css({
