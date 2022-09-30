@@ -1,6 +1,8 @@
-import { css } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
+import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import Seo from "components/common/Seo";
 import type { NextPage } from "next";
+import Chevron from "public/svg/Chevron";
 import { useEffect, useRef, useState } from "react";
 import { mediaQuery } from "styles/common";
 import addZero from "utils/addZero";
@@ -9,6 +11,7 @@ import scrollVideoPlay from "utils/scrollVideoPlay";
 const Home: NextPage = () => {
   const refMainVideo = useRef<HTMLVideoElement>(null);
   const refMainText = useRef<HTMLDivElement>(null);
+  const refChevronIcon = useRef<HTMLDivElement>(null);
   const [remainingTime, setRemainingTime] = useState({
     day: "31",
     hour: "23",
@@ -17,10 +20,13 @@ const Home: NextPage = () => {
   });
 
   useEffect(() => {
-    if (refMainVideo.current && refMainText.current) {
+    if (refMainVideo.current && refMainText.current && refChevronIcon.current) {
       window.addEventListener(
         "scroll",
-        scrollVideoPlay(refMainVideo.current, [refMainText.current])
+        scrollVideoPlay(refMainVideo.current, {
+          fixed: [refMainText.current],
+          opacity: [refChevronIcon.current],
+        })
       );
     }
   }, []);
@@ -60,7 +66,23 @@ const Home: NextPage = () => {
             muted
             ref={refMainVideo}
           />
+          <div
+            css={{
+              position: "fixed",
+              bottom: "3rem",
+              left: "50%",
+              width: "4rem",
+              height: "3rem",
+              color: "#E2E2E2",
+              animation: `${bounce("-50%")} ease-out 2s infinite`,
+            }}
+            ref={refChevronIcon}
+          >
+            <Chevron />
+          </div>
         </section>
+        <section css={videoSection}></section>
+        <section css={videoSection}></section>
       </div>
     </>
   );
@@ -71,7 +93,7 @@ export default Home;
 const mainWrapper = css({
   position: "relative",
   width: "100%",
-  height: "400rem",
+  height: "auto",
   backgroundColor: "#863fff",
 });
 
@@ -112,5 +134,18 @@ const p = (fontWeight: string, size: "lg" | "sm") =>
     padding: "1rem 0",
     [mediaQuery[1]]: {
       fontSize: "10vw",
+    },
+  });
+
+const bounce = (translateX = "0") =>
+  keyframes({
+    "0%": {
+      transform: `translate(${translateX}, 0)`,
+    },
+    "50%": {
+      transform: `translate(${translateX}, 1rem)`,
+    },
+    "100%": {
+      transform: `translate(${translateX}, 0)`,
     },
   });
