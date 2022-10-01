@@ -54,7 +54,7 @@ const MainSection = () => {
   }, []);
 
   return (
-    <section css={videoSection("500vh", "900")} ref={refSection}>
+    <section css={videoSection("500vh")} ref={refSection}>
       <div css={videoWrapper}>
         <div css={mainTextWrapper}>
           <p
@@ -80,12 +80,11 @@ const MainSection = () => {
 
 export default MainSection;
 
-const videoSection = (height: string, zIndex: string) =>
+const videoSection = (height: string) =>
   css({
     width: "100%",
     height,
     position: "relative",
-    zIndex,
   });
 
 const mainVideo = css({
