@@ -34,11 +34,11 @@ const scrollVideoPlay = (
             const currentOpacity = 1 - movableSpace / emptySpace;
 
             if (currentTime === duration) {
-              if (window.innerWidth >= breakpoint) {
-                sectionStyle.marginBottom = `${
-                  videoClientHeight - innerHeight
-                }px`;
-              }
+              // if (window.innerWidth >= breakpoint) {
+              //   sectionStyle.marginBottom = `${
+              //     videoClientHeight - innerHeight
+              //   }px`;
+              // }
 
               parentStyle.position = "absolute";
               parentStyle.transform = `translateY(${emptySpace}px)`;
