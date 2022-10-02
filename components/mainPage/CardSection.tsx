@@ -4,11 +4,15 @@ import { mediaQuery } from "styles/common";
 import addRef from "utils/addRef";
 import scrollEventCard from "utils/scrollEvent/scrollEventCard";
 import Image from "next/image";
+import useFadeIn from "hooks/useFadeIn";
 
 const CardSection = () => {
   const refSection = useRef<HTMLElement>(null);
   const refCard = useRef<HTMLDivElement[]>([]);
   const refCardTextWrapper = useRef<HTMLDivElement>(null);
+  const refAnimateFadeInUp = useRef<HTMLElement[]>([]);
+
+  useFadeIn(refAnimateFadeInUp.current, 200);
 
   useEffect(() => {
     if (refCard.current && refSection.current) {
@@ -22,7 +26,7 @@ const CardSection = () => {
   return (
     <section css={cardSection} ref={refSection}>
       <div css={cardDivwrapper} ref={refCardTextWrapper}>
-        <div css={TextWrapper}>
+        <div css={TextWrapper} ref={addRef(refAnimateFadeInUp, 0)}>
           <h3
             css={h3("lg", "700")}
           >{`토스가 만들고\n싶은 새로운 내일,\n어떤 모습인지\n확인해보세요`}</h3>
@@ -120,6 +124,7 @@ const TextWrapper = css({
   width: "24rem",
   height: "auto",
   color: "#FFFFFF",
+  opacity: "0",
   [mediaQuery[2]]: {
     width: "20rem",
   },

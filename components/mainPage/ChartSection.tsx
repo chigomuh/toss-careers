@@ -103,7 +103,7 @@ const chartVideo = css({
 const h2 = css({
   lineHeight: "1.2",
   fontWeight: "700",
-  fontSize: "5rem",
+  fontSize: "4rem",
   padding: "1rem 0",
   paddingLeft: "15vw",
   position: "absolute",
@@ -112,10 +112,10 @@ const h2 = css({
   opacity: "0",
   transform: "translateY(0%)",
   wordBreak: "keep-all",
-  maxWidth: "50rem",
+  maxWidth: "70rem",
   [mediaQuery[3]]: {
-    fontSize: "3rem",
-    maxWidht: "40rem",
+    fontSize: "3vw",
+    maxWidth: "40rem",
     paddingLeft: "10vw",
   },
   [mediaQuery[2]]: {

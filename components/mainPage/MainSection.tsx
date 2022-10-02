@@ -54,7 +54,7 @@ const MainSection = () => {
   }, []);
 
   return (
-    <section css={videoSection("500vh")} ref={refSection}>
+    <section css={videoSection("400vh")} ref={refSection}>
       <div css={videoWrapper}>
         <div css={mainTextWrapper}>
           <p
