@@ -62,7 +62,6 @@ const nav = css({
   justifyContent: "center",
   backgroundColor: "rgba(0, 29, 58, 0.18)",
   backdropFilter: "blur(10px)",
-  "-webkitBackdropFilter": "blur(10px)",
 });
 
 const navMobile = css({

@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 import { mediaQuery } from "styles/common";
 import addRef from "utils/addRef";
 import scrollEventCard from "utils/scrollEvent/scrollEventCard";
-import Image from "next/image";
 import useFadeIn from "hooks/useFadeIn";
+import Card from "components/mainPage/Card";
 
 const CardSection = () => {
   const refSection = useRef<HTMLElement>(null);
@@ -38,18 +38,7 @@ const CardSection = () => {
           {Array(9)
             .fill(0)
             .map((_, idx) => (
-              <div
-                key={idx}
-                css={card(idx.toString())}
-                ref={addRef(refCard, idx)}
-              >
-                <Image
-                  src={`/image/card-0${idx + 1}.jpg`}
-                  alt={`card-poster-${idx + 1}`}
-                  layout="fill"
-                  css={image}
-                />
-              </div>
+              <Card key={idx} idx={idx} refDiv={addRef(refCard, idx)} />
             ))}
         </div>
       </div>
@@ -59,38 +48,12 @@ const CardSection = () => {
 
 export default CardSection;
 
-const image = css({
-  borderRadius: "2rem",
-});
-
 const cardSection = css({
   width: "100%",
   height: "1000vh",
   position: "relative",
   zIndex: "900",
 });
-
-const card = (index: string) =>
-  css({
-    zIndex: 999 - +index,
-    position: "absolute",
-    top: "0",
-    right: "0",
-    width: "100%",
-    height: "100%",
-    backgroundColor: `#00${index.repeat(3)}0`,
-    borderRadius: "2rem",
-    padding: "2rem",
-    color: "#000000",
-    transform: `scale(${1 - +index / 30}) translateY(${+index * 18}%)`,
-    span: {
-      display: "block",
-      fontWeight: "700",
-    },
-    "span:first-child": {
-      fontWeight: "900",
-    },
-  });
 
 const cardWrapper = css({
   position: "relative",

@@ -1,23 +1,18 @@
 import { css, keyframes } from "@emotion/react";
+import useDiffDate from "hooks/useDiffDate";
 import Chevron from "public/svg/Chevron";
 import { useEffect, useRef, useState } from "react";
 import { mediaQuery } from "styles/common";
-import getDiffNowDeadline from "utils/getDiffNowDeadline";
 import scrollEventOpacity from "utils/scrollEvent/scrollEventOpacity";
 import scrollEventVideo from "utils/scrollEvent/scrollEventVideo";
 
-const deadlineObj = {
-  day: "31",
-  hour: "23",
-  minute: "59",
-  second: "59",
-};
-
 const MainSection = () => {
-  const [remainingTime, setRemainingTime] = useState(deadlineObj);
   const refMainVideo = useRef<HTMLVideoElement>(null);
   const refChevronIcon = useRef<HTMLDivElement>(null);
   const refSection = useRef<HTMLDivElement>(null);
+
+  const deadline = "2022-10-31T23:59:59";
+  const { date } = useDiffDate(deadline);
 
   useEffect(() => {
     if (refChevronIcon.current && refSection.current) {
@@ -37,22 +32,6 @@ const MainSection = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const deadline = "2022-10-31T23:59:59";
-      const { day, hour, minute, second } = getDiffNowDeadline(deadline);
-
-      setRemainingTime({
-        day,
-        hour,
-        minute,
-        second,
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section css={videoSection("400vh")} ref={refSection}>
       <div css={videoWrapper}>
@@ -62,7 +41,7 @@ const MainSection = () => {
           >{`아직 끝나지 않은\n토스의 성장을 위해`}</p>
           <p
             css={p("700", "sm", true)}
-          >{`${remainingTime.day}일 ${remainingTime.hour}:${remainingTime.minute}:${remainingTime.second}`}</p>
+          >{`${date.day}일 ${date.hour}:${date.minute}:${date.second}`}</p>
         </div>
         <video
           css={mainVideo}

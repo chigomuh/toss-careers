@@ -12,18 +12,17 @@ const CoreValueSection = () => {
   useFadeIn(refAnimateFadeInUp.current, 200);
 
   return (
-    <section css={section}>
+    <section css={section("#FFFFFF")}>
       <div css={wrapper}>
         <div css={textWrapper} ref={addRef(refAnimateFadeInUp, 0)}>
           {/* text */}
           <h2 css={h2}>
-            최고의 몰입과 성장을 경험할 수 있도록
-            <br css={br} /> 토스의 일하는 문화는 계속 진화합니다
+            최고의 몰입과 성장을 경험할 수 있도록 <br css={br} /> 토스의 일하는
+            문화는 계속 진화합니다
           </h2>
           <h3 css={h3}>
             세상에 없던 제품과 서비스를 선보이려면, 새로운 문화가 바탕이 되어야
-            한다고 믿습니다.
-            <br css={br} />
+            한다고 믿습니다. <br css={br} />
             토스 문화의 근간이 되는 코어 밸류(value), 그 세번째 버전을
             소개합니다.
           </h3>
@@ -70,7 +69,7 @@ const CoreValueSection = () => {
 
 export default CoreValueSection;
 
-const br = css({
+export const br = css({
   [mediaQuery[1]]: {
     display: "none",
   },
@@ -121,7 +120,7 @@ const videoWrapper = css({
   },
 });
 
-const button = css({
+export const button = css({
   width: "13.8rem",
   height: "3.2rem",
   color: "#FFFFFF",
@@ -139,7 +138,7 @@ const button = css({
   },
 });
 
-const h3 = css({
+export const h3 = css({
   fontSize: "1.1rem",
   fontWeight: "500",
   color: "#4E5968",
@@ -150,25 +149,33 @@ const h3 = css({
   },
 });
 
-const h2 = css({
-  fontSize: "3rem",
+export const h2 = css({
+  fontSize: "4rem",
   fontWeight: "800",
   lineHeight: "1.3",
   marginBottom: "1.5rem",
+  color: "#000000",
+  [mediaQuery[2]]: {
+    fontSize: "3rem",
+  },
   [mediaQuery[1]]: {
-    fontSize: "2rem",
-    padding: "0 3rem",
+    fontSize: "2.3rem",
+    padding: "0 1rem",
     wordBreak: "keep-all",
   },
 });
 
-const textWrapper = css({
+export const textWrapper = css({
   textAlign: "center",
   marginBottom: "6rem",
+  padding: "0 2rem",
   opacity: "0",
+  [mediaQuery[1]]: {
+    padding: "0",
+  },
 });
 
-const wrapper = css({
+export const wrapper = css({
   width: "100%",
   height: "auto",
   display: "flex",
@@ -176,11 +183,14 @@ const wrapper = css({
   alignItems: "center",
   justifyContent: "center",
   padding: "6rem 0",
+  position: "relative",
 });
 
-const section = css({
-  position: "relative",
-  width: "100%",
-  height: "100vh",
-  backgroundColor: "#FFFFFF",
-});
+export const section = (backgroundColor: string) =>
+  css({
+    position: "relative",
+    width: "100%",
+    height: "auto",
+    backgroundColor,
+    overflow: "hidden",
+  });
