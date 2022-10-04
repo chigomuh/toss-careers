@@ -18,6 +18,10 @@ const GrowthSection = () => {
   useFadeIn(refAnimateFadeInUp.current, 200);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 992);
+  }, [setIsMobile]);
+
+  useEffect(() => {
     window.addEventListener("resize", () => {
       const { innerWidth } = window;
 
@@ -40,7 +44,7 @@ const GrowthSection = () => {
             토스가 힘이 되어 드리겠습니다
           </h2>
         </div>
-        <div css={cardWrapper}>
+        <div css={cardWrapper} ref={addRef(refAnimateFadeInUp, 1)}>
           <div css={growthCard}>
             <div css={cardText}>
               <h2 css={cardH2}>성장 지원금</h2>
@@ -121,6 +125,7 @@ const cardWrapper = css({
   height: "auto",
   padding: "2rem",
   position: "relative",
+  opacity: "0",
   [mediaQuery[1]]: {
     padding: "0",
   },
@@ -133,7 +138,8 @@ const cardImage = css({
 const growthCard = css({
   position: "relative",
   width: "90%",
-  height: "22rem",
+  maxWidth: "70rem",
+  height: "26rem",
   borderRadius: "1.5rem",
   backgroundColor: "#4942ff",
   [mediaQuery[2]]: {

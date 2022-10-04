@@ -41,6 +41,7 @@ export default JourneySection;
 const liWrapper = css({
   width: "100%",
   height: "auto",
+  maxWidth: "80rem",
   minHeight: "8rem",
   padding: "2rem 1rem",
   borderTop: "2px solid #e5e5e5",
@@ -52,6 +53,8 @@ const liWrapper = css({
 const JTextWrapper = css({
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
   width: "100%",
   height: "auto",
   padding: "2rem",

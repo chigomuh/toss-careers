@@ -193,4 +193,5 @@ export const section = (backgroundColor: string) =>
     height: "auto",
     backgroundColor,
     overflow: "hidden",
+    minHeight: "100vh",
   });
